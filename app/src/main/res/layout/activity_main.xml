@@ -12,7 +12,19 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/start"
-        android:text="Start"/>
+        android:id="@+id/circle"
+        android:text="circle"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/flag"
+        android:text="Flag"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rectangle"
+        android:text="Rectangle"/>
 
 </LinearLayout>

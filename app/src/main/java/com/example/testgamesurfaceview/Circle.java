@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-public class MyDraw extends SurfaceView implements Runnable {
+public class Circle extends SurfaceView implements Runnable {
 
     volatile boolean playing;
     private Thread gameThread = null;
@@ -18,7 +18,7 @@ public class MyDraw extends SurfaceView implements Runnable {
     private int radius = 10;
     private boolean touch;
 
-    public MyDraw(Context context, int screenX, int screenY) {
+    public Circle(Context context, int screenX, int screenY) {
         super(context);
         surfaceHolder = getHolder();
         paint = new Paint();
@@ -40,30 +40,30 @@ public class MyDraw extends SurfaceView implements Runnable {
         }
     }
 
-    public void draw(){
-        if (surfaceHolder.getSurface().isValid()){
-            canvas = surfaceHolder.lockCanvas();
-            canvas.drawColor(Color.BLACK);
-            paint.setColor(Color.WHITE);
-            canvas.drawCircle(550, 1000,radius, paint);
-            surfaceHolder.unlockCanvasAndPost(canvas);
+        public void draw(){
+            if (surfaceHolder.getSurface().isValid()){
+                canvas = surfaceHolder.lockCanvas();
+                canvas.drawColor(Color.BLACK);
+                paint.setColor(Color.WHITE);
+                canvas.drawCircle(550, 1000,radius, paint);
+                surfaceHolder.unlockCanvasAndPost(canvas);
+            }
         }
-    }
 
-    public void pause(){
-        playing = false;
-        try {
-            gameThread.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        public void pause(){
+            playing = false;
+            try {
+                gameThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-    }
 
-    public void resume(){
-        playing = true;
-        gameThread = new Thread(this);
-        gameThread.start();
-    }
+        public void resume(){
+            playing = true;
+            gameThread = new Thread(this);
+            gameThread.start();
+        }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
